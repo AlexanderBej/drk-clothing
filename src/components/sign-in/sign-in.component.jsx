@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-import { 
-    signInWithGooglePopup, 
-    signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
+import {
+    signInWithGooglePopup,
+    signInAuthUserWithEmailAndPassword
+} from '../../utils/firebase/firebase.utils';
 
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
+import Button, { BUTTON_TYPES_CLASSES } from '../button/button.component';
 
 import './sign-in.styles.scss';
 
@@ -34,8 +35,7 @@ const SignIn = () => {
             const { user } = await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
         } catch (error) {
-            console.log(error.code)
-            if(error.code === 'auth/invalid-credential') {
+            if (error.code === 'auth/invalid-credential') {
                 alert('incorrect password')
             }
         }
@@ -72,7 +72,12 @@ const SignIn = () => {
 
                 <div className='btns-container'>
                     <Button type="submit">Sign In</Button>
-                    <Button type='button' onClick={signInWithGoogle} buttonType='google'>Google Sign In</Button>
+                    <Button
+                        type='button'
+                        onClick={signInWithGoogle}
+                        buttonType={BUTTON_TYPES_CLASSES.google}>
+                        Google Sign In
+                    </Button>
                 </div>
 
             </form>
