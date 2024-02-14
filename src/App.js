@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from 'react-redux';
 
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from './store/user/user.action';
+import { setCurrentUser } from './store/user/user.slice';
 
 import Home from './routes/home/home.component';
 import Navigation from './routes/nav/nav.component';
@@ -19,6 +19,7 @@ const App = () => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
+      console.log(setCurrentUser(user));
       dispatch(setCurrentUser(user));
     })
     return unsubscribe;
